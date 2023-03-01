@@ -11,6 +11,65 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class PodFarm extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save PodFarm entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type PodFarm must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("PodFarm", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): PodFarm | null {
+    return changetype<PodFarm | null>(store.get("PodFarm", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get giftToken(): Bytes {
+    let value = this.get("giftToken");
+    return value!.toBytes();
+  }
+
+  set giftToken(value: Bytes) {
+    this.set("giftToken", Value.fromBytes(value));
+  }
+
+  get power(): BigInt {
+    let value = this.get("power");
+    return value!.toBigInt();
+  }
+
+  set power(value: BigInt) {
+    this.set("power", Value.fromBigInt(value));
+  }
+
+  get rewards(): BigInt {
+    let value = this.get("rewards");
+    return value!.toBigInt();
+  }
+
+  set rewards(value: BigInt) {
+    this.set("rewards", Value.fromBigInt(value));
+  }
+}
+
 export class Approval extends Entity {
   constructor(id: Bytes) {
     super();
@@ -2431,5 +2490,306 @@ export class AggregationRouterV5OwnershipTransferred extends Entity {
 
   set transactionHash(value: Bytes) {
     this.set("transactionHash", Value.fromBytes(value));
+  }
+}
+
+export class Resolver extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Resolver entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type Resolver must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Resolver", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): Resolver | null {
+    return changetype<Resolver | null>(store.get("Resolver", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get resolvedCount(): BigInt {
+    let value = this.get("resolvedCount");
+    return value!.toBigInt();
+  }
+
+  set resolvedCount(value: BigInt) {
+    this.set("resolvedCount", Value.fromBigInt(value));
+  }
+
+  get pod(): Array<Bytes> | null {
+    let value = this.get("pod");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBytesArray();
+    }
+  }
+
+  set pod(value: Array<Bytes> | null) {
+    if (!value) {
+      this.unset("pod");
+    } else {
+      this.set("pod", Value.fromBytesArray(<Array<Bytes>>value));
+    }
+  }
+}
+
+export class Token extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Token entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type Token must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Token", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): Token | null {
+    return changetype<Token | null>(store.get("Token", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get symbol(): string {
+    let value = this.get("symbol");
+    return value!.toString();
+  }
+
+  set symbol(value: string) {
+    this.set("symbol", Value.fromString(value));
+  }
+
+  get decimals(): BigInt {
+    let value = this.get("decimals");
+    return value!.toBigInt();
+  }
+
+  set decimals(value: BigInt) {
+    this.set("decimals", Value.fromBigInt(value));
+  }
+}
+
+export class Transaction extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Transaction entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type Transaction must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Transaction", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): Transaction | null {
+    return changetype<Transaction | null>(
+      store.get("Transaction", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get block(): BigInt {
+    let value = this.get("block");
+    return value!.toBigInt();
+  }
+
+  set block(value: BigInt) {
+    this.set("block", Value.fromBigInt(value));
+  }
+
+  get timestamp(): BigInt {
+    let value = this.get("timestamp");
+    return value!.toBigInt();
+  }
+
+  set timestamp(value: BigInt) {
+    this.set("timestamp", Value.fromBigInt(value));
+  }
+
+  get gasPrice(): BigInt {
+    let value = this.get("gasPrice");
+    return value!.toBigInt();
+  }
+
+  set gasPrice(value: BigInt) {
+    this.set("gasPrice", Value.fromBigInt(value));
+  }
+
+  get gasUsed(): BigInt {
+    let value = this.get("gasUsed");
+    return value!.toBigInt();
+  }
+
+  set gasUsed(value: BigInt) {
+    this.set("gasUsed", Value.fromBigInt(value));
+  }
+}
+
+export class Settlement extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save Settlement entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type Settlement must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("Settlement", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): Settlement | null {
+    return changetype<Settlement | null>(
+      store.get("Settlement", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get transaction(): Bytes {
+    let value = this.get("transaction");
+    return value!.toBytes();
+  }
+
+  set transaction(value: Bytes) {
+    this.set("transaction", Value.fromBytes(value));
+  }
+
+  get resolver(): Bytes {
+    let value = this.get("resolver");
+    return value!.toBytes();
+  }
+
+  set resolver(value: Bytes) {
+    this.set("resolver", Value.fromBytes(value));
+  }
+
+  get makerAsset(): Bytes {
+    let value = this.get("makerAsset");
+    return value!.toBytes();
+  }
+
+  set makerAsset(value: Bytes) {
+    this.set("makerAsset", Value.fromBytes(value));
+  }
+
+  get takerAsset(): Bytes {
+    let value = this.get("takerAsset");
+    return value!.toBytes();
+  }
+
+  set takerAsset(value: Bytes) {
+    this.set("takerAsset", Value.fromBytes(value));
+  }
+
+  get makingAmountOrder(): BigInt {
+    let value = this.get("makingAmountOrder");
+    return value!.toBigInt();
+  }
+
+  set makingAmountOrder(value: BigInt) {
+    this.set("makingAmountOrder", Value.fromBigInt(value));
+  }
+
+  get takingAmountOrder(): BigInt {
+    let value = this.get("takingAmountOrder");
+    return value!.toBigInt();
+  }
+
+  set takingAmountOrder(value: BigInt) {
+    this.set("takingAmountOrder", Value.fromBigInt(value));
+  }
+
+  get makingAmountExected(): BigInt {
+    let value = this.get("makingAmountExected");
+    return value!.toBigInt();
+  }
+
+  set makingAmountExected(value: BigInt) {
+    this.set("makingAmountExected", Value.fromBigInt(value));
+  }
+
+  get takingAmountExecuted(): BigInt {
+    let value = this.get("takingAmountExecuted");
+    return value!.toBigInt();
+  }
+
+  set takingAmountExecuted(value: BigInt) {
+    this.set("takingAmountExecuted", Value.fromBigInt(value));
+  }
+
+  get receiver(): string | null {
+    let value = this.get("receiver");
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toString();
+    }
+  }
+
+  set receiver(value: string | null) {
+    if (!value) {
+      this.unset("receiver");
+    } else {
+      this.set("receiver", Value.fromString(<string>value));
+    }
   }
 }
