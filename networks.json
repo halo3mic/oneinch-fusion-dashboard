@@ -1,0 +1,20 @@
+{
+  "mainnet": {
+    "St1inch": {
+      "address": "0x9A0C8Ff858d273f57072D714bca7411D717501D7",
+      "startBlock": 16241691
+    },
+    "PowerPod": {
+      "address": "0x9A0C8Ff858d273f57072D714bca7411D717501D7"
+    },
+    "WhitelistRegistry": {
+      "address": "0xcb8308fcB7BC2f84ed1bEa2C016991D34de5cc77"
+    },
+    "Settliement": {
+      "address": "0xA88800CD213dA5Ae406ce248380802BD53b47647"
+    },
+    "AggregationRouterV5": {
+      "address": "0x1111111254EEB25477B68fb85Ed929f73A960582"
+    }
+  }
+}
