@@ -266,3 +266,38 @@ type AggregationRouterV5OwnershipTransferred @entity(immutable: true) {
   blockTimestamp: BigInt!
   transactionHash: Bytes!
 }
+
+type Resolver {
+  id: Bytes!
+  resolvedCount: BigInt!
+  pod: Pod
+}
+
+type Token {
+  id: Bytes!
+  symbol: String!
+  decimals: BigInt!
+}
+
+type Transaction {
+  id: Bytes!
+  block: BigInt!
+  timestamp: BigInt!
+  gasPrice: BigInt!
+  gasUsed: BigInt!
+}
+
+type Settlement {
+  id: Bytes!
+  transaction: Transaction!
+  resolver: Resolver! 
+  makerAsset: Token!
+  takerAsset: Token!
+  makingAmountOrder: BigInt!
+  takingAmountOrder: BigInt!
+  makingAmountExected: BigInt!
+  takingAmountExecuted: BigInt!
+  receiver: String
+}
+
+
