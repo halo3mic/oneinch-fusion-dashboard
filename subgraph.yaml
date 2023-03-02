@@ -2,135 +2,133 @@ specVersion: 0.0.5
 schema:
   file: ./schema.graphql
 dataSources:
-  - kind: ethereum
-    name: St1inch
-    network: mainnet
-    source:
-      address: "0x9A0C8Ff858d273f57072D714bca7411D717501D7"
-      abi: St1inch
-      startBlock: 16241691
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - Approval
-        - DefaultFarmSet
-        - EmergencyExitSet
-        - FeeReceiverSet
-        - MaxLossRatioSet
-        - MinLockPeriodRatioSet
-        - OwnershipTransferred
-        - PodAdded
-        - PodRemoved
-        - Transfer
-      abis:
-        - name: St1inch
-          file: ./abis/St1inch.json
-      eventHandlers:
-        - event: Approval(indexed address,indexed address,uint256)
-          handler: handleApproval
-        - event: DefaultFarmSet(address)
-          handler: handleDefaultFarmSet
-        - event: EmergencyExitSet(bool)
-          handler: handleEmergencyExitSet
-        - event: FeeReceiverSet(address)
-          handler: handleFeeReceiverSet
-        - event: MaxLossRatioSet(uint256)
-          handler: handleMaxLossRatioSet
-        - event: MinLockPeriodRatioSet(uint256)
-          handler: handleMinLockPeriodRatioSet
-        - event: OwnershipTransferred(indexed address,indexed address)
-          handler: handleOwnershipTransferred
-        - event: PodAdded(address,address)
-          handler: handlePodAdded
-        - event: PodRemoved(address,address)
-          handler: handlePodRemoved
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-      file: ./src/st-1-inch.ts
-  - kind: ethereum
-    name: PowerPod
-    network: mainnet
-    source:
-      address: "0x9A0C8Ff858d273f57072D714bca7411D717501D7"
-      abi: PowerPod
-      startBlock: 16241691
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - PowerPodApproval
-        - PowerPodDefaultFarmSet
-        - PowerPodEmergencyExitSet
-        - PowerPodFeeReceiverSet
-        - PowerPodMaxLossRatioSet
-        - PowerPodMinLockPeriodRatioSet
-        - PowerPodOwnershipTransferred
-        - PowerPodPodAdded
-        - PowerPodPodRemoved
-        - PowerPodTransfer
-      abis:
-        - name: PowerPod
-          file: ./abis/PowerPod.json
-      eventHandlers:
-        - event: PowerPodApproval(indexed address,indexed address,uint256)
-          handler: handlePowerPodApproval
-        - event: PowerPodDefaultFarmSet(address)
-          handler: handlePowerPodDefaultFarmSet
-        - event: PowerPodEmergencyExitSet(bool)
-          handler: handlePowerPodEmergencyExitSet
-        - event: PowerPodFeeReceiverSet(address)
-          handler: handlePowerPodFeeReceiverSet
-        - event: PowerPodMaxLossRatioSet(uint256)
-          handler: handlePowerPodMaxLossRatioSet
-        - event: PowerPodMinLockPeriodRatioSet(uint256)
-          handler: handlePowerPodMinLockPeriodRatioSet
-        - event: PowerPodOwnershipTransferred(indexed address,indexed address)
-          handler: handlePowerPodOwnershipTransferred
-        - event: PowerPodPodAdded(address,address)
-          handler: handlePowerPodPodAdded
-        - event: PowerPodPodRemoved(address,address)
-          handler: handlePowerPodPodRemoved
-        - event: PowerPodTransfer(indexed address,indexed address,uint256)
-          handler: handlePowerPodTransfer
-      file: ./src/power-pod.ts
-  - kind: ethereum
-    name: WhitelistRegistry
-    network: mainnet
-    source:
-      address: "0xcb8308fcB7BC2f84ed1bEa2C016991D34de5cc77"
-      abi: WhitelistRegistry
-      startBlock: 16269197
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - WhitelistRegistryOwnershipTransferred
-        - Promotion
-        - Registered
-        - ResolverThresholdSet
-        - Unregistered
-        - WhitelistLimitSet
-      abis:
-        - name: WhitelistRegistry
-          file: ./abis/WhitelistRegistry.json
-      eventHandlers:
-        - event: WhitelistRegistryOwnershipTransferred(indexed address,indexed address)
-          handler: handleWhitelistRegistryOwnershipTransferred
-        - event: Promotion(address,uint256,address)
-          handler: handlePromotion
-        - event: Registered(address)
-          handler: handleRegistered
-        - event: ResolverThresholdSet(uint256)
-          handler: handleResolverThresholdSet
-        - event: Unregistered(address)
-          handler: handleUnregistered
-        - event: WhitelistLimitSet(uint256)
-          handler: handleWhitelistLimitSet
-      file: ./src/whitelist-registry.ts
+  # - kind: ethereum
+  #   name: St1inch
+  #   network: mainnet
+  #   source:
+  #     address: "0x9A0C8Ff858d273f57072D714bca7411D717501D7"
+  #     abi: St1inch
+  #     startBlock: 16241691
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - DefaultFarmSet
+  #       - EmergencyExitSet
+  #       - FeeReceiverSet
+  #       - MaxLossRatioSet
+  #       - MinLockPeriodRatioSet
+  #       - PodAdded
+  #       - PodRemoved
+  #       - Transfer
+  #     abis:
+  #       - name: St1inch
+  #         file: ./abis/St1inch.json
+  #     eventHandlers:
+  #       - event: Approval(indexed address,indexed address,uint256)
+  #         handler: handleApproval
+  #       - event: DefaultFarmSet(address)
+  #         handler: handleDefaultFarmSet
+  #       - event: EmergencyExitSet(bool)
+  #         handler: handleEmergencyExitSet
+  #       - event: FeeReceiverSet(address)
+  #         handler: handleFeeReceiverSet
+  #       - event: MaxLossRatioSet(uint256)
+  #         handler: handleMaxLossRatioSet
+  #       - event: MinLockPeriodRatioSet(uint256)
+  #         handler: handleMinLockPeriodRatioSet
+  #       - event: OwnershipTransferred(indexed address,indexed address)
+  #         handler: handleOwnershipTransferred
+  #       - event: PodAdded(address,address)
+  #         handler: handlePodAdded
+  #       - event: PodRemoved(address,address)
+  #         handler: handlePodRemoved
+  #       - event: Transfer(indexed address,indexed address,uint256)
+  #         handler: handleTransfer
+  #     file: ./src/st-1-inch.ts
+  # - kind: ethereum
+  #   name: PowerPod
+  #   network: mainnet
+  #   source:
+  #     address: "0x9A0C8Ff858d273f57072D714bca7411D717501D7"
+  #     abi: PowerPod
+  #     startBlock: 16241691
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - PowerPodApproval
+  #       - PowerPodDefaultFarmSet
+  #       - PowerPodEmergencyExitSet
+  #       - PowerPodFeeReceiverSet
+  #       - PowerPodMaxLossRatioSet
+  #       - PowerPodMinLockPeriodRatioSet
+  #       - PowerPodOwnershipTransferred
+  #       - PowerPodPodAdded
+  #       - PowerPodPodRemoved
+  #       - PowerPodTransfer
+  #     abis:
+  #       - name: PowerPod
+  #         file: ./abis/PowerPod.json
+  #     eventHandlers:
+  #       - event: PowerPodApproval(indexed address,indexed address,uint256)
+  #         handler: handlePowerPodApproval
+  #       - event: PowerPodDefaultFarmSet(address)
+  #         handler: handlePowerPodDefaultFarmSet
+  #       - event: PowerPodEmergencyExitSet(bool)
+  #         handler: handlePowerPodEmergencyExitSet
+  #       - event: PowerPodFeeReceiverSet(address)
+  #         handler: handlePowerPodFeeReceiverSet
+  #       - event: PowerPodMaxLossRatioSet(uint256)
+  #         handler: handlePowerPodMaxLossRatioSet
+  #       - event: PowerPodMinLockPeriodRatioSet(uint256)
+  #         handler: handlePowerPodMinLockPeriodRatioSet
+  #       - event: PowerPodOwnershipTransferred(indexed address,indexed address)
+  #         handler: handlePowerPodOwnershipTransferred
+  #       - event: PowerPodPodAdded(address,address)
+  #         handler: handlePowerPodPodAdded
+  #       - event: PowerPodPodRemoved(address,address)
+  #         handler: handlePowerPodPodRemoved
+  #       - event: PowerPodTransfer(indexed address,indexed address,uint256)
+  #         handler: handlePowerPodTransfer
+  #     file: ./src/power-pod.ts
+  # - kind: ethereum
+  #   name: WhitelistRegistry
+  #   network: mainnet
+  #   source:
+  #     address: "0xcb8308fcB7BC2f84ed1bEa2C016991D34de5cc77"
+  #     abi: WhitelistRegistry
+  #     startBlock: 16269197
+  #   mapping:
+  #     kind: ethereum/events
+  #     apiVersion: 0.0.7
+  #     language: wasm/assemblyscript
+  #     entities:
+  #       - WhitelistRegistryOwnershipTransferred
+  #       - Promotion
+  #       - Registered
+  #       - ResolverThresholdSet
+  #       - Unregistered
+  #       - WhitelistLimitSet
+  #     abis:
+  #       - name: WhitelistRegistry
+  #         file: ./abis/WhitelistRegistry.json
+  #     eventHandlers:
+  #       - event: WhitelistRegistryOwnershipTransferred(indexed address,indexed address)
+  #         handler: handleWhitelistRegistryOwnershipTransferred
+  #       - event: Promotion(address,uint256,address)
+  #         handler: handlePromotion
+  #       - event: Registered(address)
+  #         handler: handleRegistered
+  #       - event: ResolverThresholdSet(uint256)
+  #         handler: handleResolverThresholdSet
+  #       - event: Unregistered(address)
+  #         handler: handleUnregistered
+  #       - event: WhitelistLimitSet(uint256)
+  #         handler: handleWhitelistLimitSet
+  #     file: ./src/whitelist-registry.ts
   - kind: ethereum
     name: AggregationRouterV5
     network: mainnet
@@ -143,23 +141,57 @@ dataSources:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
       entities:
-        - NonceIncreased
-        - OrderCanceled
         - OrderFilled
-        - OrderFilledRFQ
-        - AggregationRouterV5OwnershipTransferred
       abis:
         - name: AggregationRouterV5
           file: ./abis/AggregationRouterV5.json
       eventHandlers:
-        - event: NonceIncreased(indexed address,uint256)
-          handler: handleNonceIncreased
+        # - event: NonceIncreased(indexed address,uint256)
+        #   handler: handleNonceIncreased
         - event: OrderCanceled(indexed address,bytes32,uint256)
           handler: handleOrderCanceled
         - event: OrderFilled(indexed address,bytes32,uint256)
           handler: handleOrderFilled
         - event: OrderFilledRFQ(bytes32,uint256)
           handler: handleOrderFilledRFQ
-        - event: AggregationRouterV5OwnershipTransferred(indexed address,indexed address)
-          handler: handleAggregationRouterV5OwnershipTransferred
-      file: ./src/aggregation-router-v-5.ts
+      file: ./src/settlement.ts
+  - kind: ethereum/contract
+    name: Settlement
+    network: mainnet
+    source:
+      address: '0xa88800cd213da5ae406ce248380802bd53b47647'
+      abi: Settlement
+      startBlock: 16241236
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - SettleOrdersCall
+      abis:
+        - name: Settlement
+          file: ./abis/Settlement.json
+      callHandlers:
+        - function: settleOrders(bytes)
+          handler: handleSettleOrders
+      file: ./src/settlement.ts
+  - kind: ethereum/contract
+    name: AggregationRouterV5Calls
+    network: mainnet
+    source:
+      address: '0x1111111254eeb25477b68fb85ed929f73a960582'
+      abi: AggregationRouterV5
+      startBlock: 15894742
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.6
+      language: wasm/assemblyscript
+      entities:
+        - FillOrderCall
+      abis:
+        - name: AggregationRouterV5
+          file: ./abis/AggregationRouterV5.json
+      callHandlers:
+        - function: fillOrder((uint256,address,address,address,address,address,uint256,uint256,uint256,bytes),bytes,bytes,uint256,uint256,uint256)
+          handler: handleFillOrder
+      file: ./src/Settlement.ts

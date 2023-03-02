@@ -70,162 +70,6 @@ export class PodFarm extends Entity {
   }
 }
 
-export class Approval extends Entity {
-  constructor(id: Bytes) {
-    super();
-    this.set("id", Value.fromBytes(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save Approval entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type Approval must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("Approval", id.toBytes().toHexString(), this);
-    }
-  }
-
-  static load(id: Bytes): Approval | null {
-    return changetype<Approval | null>(store.get("Approval", id.toHexString()));
-  }
-
-  get id(): Bytes {
-    let value = this.get("id");
-    return value!.toBytes();
-  }
-
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
-  }
-
-  get owner(): Bytes {
-    let value = this.get("owner");
-    return value!.toBytes();
-  }
-
-  set owner(value: Bytes) {
-    this.set("owner", Value.fromBytes(value));
-  }
-
-  get spender(): Bytes {
-    let value = this.get("spender");
-    return value!.toBytes();
-  }
-
-  set spender(value: Bytes) {
-    this.set("spender", Value.fromBytes(value));
-  }
-
-  get value(): BigInt {
-    let value = this.get("value");
-    return value!.toBigInt();
-  }
-
-  set value(value: BigInt) {
-    this.set("value", Value.fromBigInt(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value!.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get blockTimestamp(): BigInt {
-    let value = this.get("blockTimestamp");
-    return value!.toBigInt();
-  }
-
-  set blockTimestamp(value: BigInt) {
-    this.set("blockTimestamp", Value.fromBigInt(value));
-  }
-
-  get transactionHash(): Bytes {
-    let value = this.get("transactionHash");
-    return value!.toBytes();
-  }
-
-  set transactionHash(value: Bytes) {
-    this.set("transactionHash", Value.fromBytes(value));
-  }
-}
-
-export class DefaultFarmSet extends Entity {
-  constructor(id: Bytes) {
-    super();
-    this.set("id", Value.fromBytes(id));
-  }
-
-  save(): void {
-    let id = this.get("id");
-    assert(id != null, "Cannot save DefaultFarmSet entity without an ID");
-    if (id) {
-      assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type DefaultFarmSet must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
-      );
-      store.set("DefaultFarmSet", id.toBytes().toHexString(), this);
-    }
-  }
-
-  static load(id: Bytes): DefaultFarmSet | null {
-    return changetype<DefaultFarmSet | null>(
-      store.get("DefaultFarmSet", id.toHexString())
-    );
-  }
-
-  get id(): Bytes {
-    let value = this.get("id");
-    return value!.toBytes();
-  }
-
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
-  }
-
-  get defaultFarm(): Bytes {
-    let value = this.get("defaultFarm");
-    return value!.toBytes();
-  }
-
-  set defaultFarm(value: Bytes) {
-    this.set("defaultFarm", Value.fromBytes(value));
-  }
-
-  get blockNumber(): BigInt {
-    let value = this.get("blockNumber");
-    return value!.toBigInt();
-  }
-
-  set blockNumber(value: BigInt) {
-    this.set("blockNumber", Value.fromBigInt(value));
-  }
-
-  get blockTimestamp(): BigInt {
-    let value = this.get("blockTimestamp");
-    return value!.toBigInt();
-  }
-
-  set blockTimestamp(value: BigInt) {
-    this.set("blockTimestamp", Value.fromBigInt(value));
-  }
-
-  get transactionHash(): Bytes {
-    let value = this.get("transactionHash");
-    return value!.toBytes();
-  }
-
-  set transactionHash(value: Bytes) {
-    this.set("transactionHash", Value.fromBytes(value));
-  }
-}
-
 export class EmergencyExitSet extends Entity {
   constructor(id: Bytes) {
     super();
@@ -2704,6 +2548,15 @@ export class Settlement extends Entity {
     this.set("id", Value.fromBytes(value));
   }
 
+  get orderHash(): Bytes {
+    let value = this.get("orderHash");
+    return value!.toBytes();
+  }
+
+  set orderHash(value: Bytes) {
+    this.set("orderHash", Value.fromBytes(value));
+  }
+
   get transaction(): Bytes {
     let value = this.get("transaction");
     return value!.toBytes();
@@ -2740,56 +2593,153 @@ export class Settlement extends Entity {
     this.set("takerAsset", Value.fromBytes(value));
   }
 
-  get makingAmountOrder(): BigInt {
-    let value = this.get("makingAmountOrder");
+  get makingAmount(): BigInt {
+    let value = this.get("makingAmount");
     return value!.toBigInt();
   }
 
-  set makingAmountOrder(value: BigInt) {
-    this.set("makingAmountOrder", Value.fromBigInt(value));
+  set makingAmount(value: BigInt) {
+    this.set("makingAmount", Value.fromBigInt(value));
   }
 
-  get takingAmountOrder(): BigInt {
-    let value = this.get("takingAmountOrder");
+  get takingAmountMin(): BigInt {
+    let value = this.get("takingAmountMin");
     return value!.toBigInt();
   }
 
-  set takingAmountOrder(value: BigInt) {
-    this.set("takingAmountOrder", Value.fromBigInt(value));
+  set takingAmountMin(value: BigInt) {
+    this.set("takingAmountMin", Value.fromBigInt(value));
   }
 
-  get makingAmountExected(): BigInt {
-    let value = this.get("makingAmountExected");
+  get makingAmountActual(): BigInt {
+    let value = this.get("makingAmountActual");
     return value!.toBigInt();
   }
 
-  set makingAmountExected(value: BigInt) {
-    this.set("makingAmountExected", Value.fromBigInt(value));
+  set makingAmountActual(value: BigInt) {
+    this.set("makingAmountActual", Value.fromBigInt(value));
   }
 
-  get takingAmountExecuted(): BigInt {
-    let value = this.get("takingAmountExecuted");
-    return value!.toBigInt();
-  }
-
-  set takingAmountExecuted(value: BigInt) {
-    this.set("takingAmountExecuted", Value.fromBigInt(value));
-  }
-
-  get receiver(): string | null {
-    let value = this.get("receiver");
+  get takingAmountActual(): BigInt | null {
+    let value = this.get("takingAmountActual");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toString();
+      return value.toBigInt();
     }
   }
 
-  set receiver(value: string | null) {
+  set takingAmountActual(value: BigInt | null) {
     if (!value) {
-      this.unset("receiver");
+      this.unset("takingAmountActual");
     } else {
-      this.set("receiver", Value.fromString(<string>value));
+      this.set("takingAmountActual", Value.fromBigInt(<BigInt>value));
     }
+  }
+
+  get receiver(): Bytes {
+    let value = this.get("receiver");
+    return value!.toBytes();
+  }
+
+  set receiver(value: Bytes) {
+    this.set("receiver", Value.fromBytes(value));
+  }
+
+  get maker(): Bytes {
+    let value = this.get("maker");
+    return value!.toBytes();
+  }
+
+  set maker(value: Bytes) {
+    this.set("maker", Value.fromBytes(value));
+  }
+
+  get executor(): Bytes {
+    let value = this.get("executor");
+    return value!.toBytes();
+  }
+
+  set executor(value: Bytes) {
+    this.set("executor", Value.fromBytes(value));
+  }
+
+  get isPrivate(): boolean {
+    let value = this.get("isPrivate");
+    return value!.toBoolean();
+  }
+
+  set isPrivate(value: boolean) {
+    this.set("isPrivate", Value.fromBoolean(value));
+  }
+
+  get interactiveFee(): BigInt {
+    let value = this.get("interactiveFee");
+    return value!.toBigInt();
+  }
+
+  set interactiveFee(value: BigInt) {
+    this.set("interactiveFee", Value.fromBigInt(value));
+  }
+}
+
+export class ResolverTokenVolume extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save ResolverTokenVolume entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type ResolverTokenVolume must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("ResolverTokenVolume", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): ResolverTokenVolume | null {
+    return changetype<ResolverTokenVolume | null>(
+      store.get("ResolverTokenVolume", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get resolver(): Bytes {
+    let value = this.get("resolver");
+    return value!.toBytes();
+  }
+
+  set resolver(value: Bytes) {
+    this.set("resolver", Value.fromBytes(value));
+  }
+
+  get volume(): BigInt {
+    let value = this.get("volume");
+    return value!.toBigInt();
+  }
+
+  set volume(value: BigInt) {
+    this.set("volume", Value.fromBigInt(value));
+  }
+
+  get asset(): Bytes {
+    let value = this.get("asset");
+    return value!.toBytes();
+  }
+
+  set asset(value: Bytes) {
+    this.set("asset", Value.fromBytes(value));
   }
 }

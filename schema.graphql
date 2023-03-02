@@ -278,13 +278,25 @@ type Transaction @entity(immutable: true) {
 
 type Settlement @entity(immutable: true) {
 	id: Bytes!
+	orderHash: Bytes!
 	transaction: Transaction!
 	resolver: Resolver!
 	makerAsset: Token!
 	takerAsset: Token!
-	makingAmountOrder: BigInt!
-	takingAmountOrder: BigInt!
-	makingAmountExected: BigInt!
-	takingAmountExecuted: BigInt!
-	receiver: String
+	makingAmount: BigInt!
+	takingAmountMin: BigInt!
+	makingAmountActual: BigInt!
+	takingAmountActual: BigInt
+	receiver: Bytes!
+	maker: Bytes!
+	executor: Bytes!
+	isPrivate: Boolean!
+	interactiveFee: BigInt!
+}
+
+type ResolverTokenVolume @entity(immutable: true) {
+	id: Bytes!
+	resolver: Resolver!
+	volume: BigInt!
+	asset: Token!
 }

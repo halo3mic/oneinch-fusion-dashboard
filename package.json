@@ -1,18 +1,9 @@
 {
-  "name": "1inch-fusion",
-  "license": "UNLICENSED",
-  "scripts": {
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.studio.thegraph.com/deploy/ 1inch-fusion",
-    "create-local": "graph create --node http://localhost:8020/ 1inch-fusion",
-    "remove-local": "graph remove --node http://localhost:8020/ 1inch-fusion",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 1inch-fusion",
-    "test": "graph test"
-  },
-  "dependencies": {
-    "@graphprotocol/graph-cli": "0.42.2",
-    "@graphprotocol/graph-ts": "0.29.1"
-  },
-  "devDependencies": { "matchstick-as": "0.5.0" }
+  "name": "oneinch-graph",
+  "version": "1.0.0",
+  "description": "The graph for 1inch Fusion ",
+  "main": "index.js",
+  "author": "halo3mic",
+  "license": "MIT",
+  "private": false
 }
