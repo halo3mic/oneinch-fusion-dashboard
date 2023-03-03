@@ -249,6 +249,7 @@ type DelegationInfo @entity(immutable: false) {
 type Resolver @entity(immutable: false) {
 	id: Bytes!
 	resolvedCount: BigInt!
+	defaultFarm: Bytes!
 }
 
 type Token @entity(immutable: false) {

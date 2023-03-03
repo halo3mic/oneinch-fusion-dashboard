@@ -2281,6 +2281,15 @@ export class Resolver extends Entity {
   set resolvedCount(value: BigInt) {
     this.set("resolvedCount", Value.fromBigInt(value));
   }
+
+  get defaultFarm(): Bytes {
+    let value = this.get("defaultFarm");
+    return value!.toBytes();
+  }
+
+  set defaultFarm(value: Bytes) {
+    this.set("defaultFarm", Value.fromBytes(value));
+  }
 }
 
 export class Token extends Entity {

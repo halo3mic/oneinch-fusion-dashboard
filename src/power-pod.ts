@@ -1,7 +1,11 @@
 import { Address, BigInt } from "@graphprotocol/graph-ts"
 
-import { Transfer as TransferEvent, Delegated as DelegatedEvent } from "../generated/PowerPod/PowerPod"
-import { DelegationInfo } from "../generated/schema"
+import {
+	Transfer as TransferEvent,
+	Delegated as DelegatedEvent,
+	DefaultFarmSet as DefaultFarmSetEvent,
+} from "../generated/PowerPod/PowerPod"
+import { DelegationInfo, Resolver } from "../generated/schema"
 
 export function handlePowerPodDelegated(event: DelegatedEvent): void {
 	const id = event.params.delegatee
@@ -27,4 +31,18 @@ export function handlePowerPodTransfer(event: TransferEvent): void {
 	delegation.amount = delegation.amount.plus(event.params.value)
 
 	delegation.save()
+}
+
+export function handleDefaultFarmSet(event: DefaultFarmSetEvent): void {
+	const id = event.transaction.from
+	let resolver = Resolver.load(id)
+	if (!resolver) {
+		resolver = new Resolver(id)
+		resolver.resolvedCount = new BigInt(0)
+		resolver.defaultFarm = new Address(0)
+	}
+
+	resolver.defaultFarm = event.params.defaultFarm
+
+	resolver.save()
 }

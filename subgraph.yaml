@@ -61,6 +61,7 @@ dataSources:
           entities:
               - Delegated
               - Transfer
+              - DefaultFarmSet
           abis:
               - name: PowerPod
                 file: ./abis/PowerPod.json
@@ -69,6 +70,8 @@ dataSources:
                 handler: handlePowerPodDelegated
               - event: Transfer(indexed address,indexed address,uint256)
                 handler: handlePowerPodTransfer
+              - event: DefaultFarmSet(address)
+                handler: handleDefaultFarmSet
           file: ./src/power-pod.ts
     - kind: ethereum
       name: WhitelistRegistry

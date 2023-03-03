@@ -16,6 +16,7 @@ dataSources:
       entities:
         - Delegated
         - Transfer
+        - DefaultFarmSet
       abis:
         - name: PowerPod
           file: PowerPod/abis/PowerPod.json
@@ -24,4 +25,6 @@ dataSources:
           handler: handlePowerPodDelegated
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handlePowerPodTransfer
+        - event: DefaultFarmSet(address)
+          handler: handleDefaultFarmSet
       file: PowerPod/PowerPod.wasm
