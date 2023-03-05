@@ -11,26 +11,30 @@ import { FaDiscord } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { BsPlusLg } from "react-icons/bs";
 
+import { RiBankFill } from "react-icons/ri";
+import { GoGitCompare } from "react-icons/go";
+import { GiHorseHead } from "react-icons/gi";
+
 const menuItems = [
   {
-    title: "Dashboard",
+    title: "Rewards & Fees",
     icon: <RxDashboard />,
   },
   {
-    title: "My Audits",
-    icon: <MdSecurity />,
+    title: "Resolvers",
+    icon: <GiHorseHead />,
   },
   {
-    title: "Analytics",
+    title: "Volumes",
     icon: <IoAnalyticsOutline />,
   },
   {
-    title: "Account",
-    icon: <AiOutlineUser />,
+    title: "Transactions",
+    icon: <GoGitCompare />,
   },
   {
-    title: "Security Monitor",
-    icon: <GiChampions />,
+    title: "Governance",
+    icon: <RiBankFill />,
   },
 ];
 
@@ -46,14 +50,14 @@ const Sidebar = () => {
             {menuItems.map((item, index) => {
               return (
                 <li key={index}>
-                <a className="px-2 py-2 my-2 flex items-center text-white active:bg-indigo-500 hover:bg-indigo-500 rounded-md cursor-pointer">
+                <a className="px-2 py-2 my-2 flex items-center text-white active:bg-blue-500 hover:bg-blue-900 rounded-md cursor-pointer">
                   {item.icon}
                   <span className="ml-2">{item.title}</span>
                 </a>
                 </li>
               );
             })}
-            <div className="divider border-b border-[#4B4B99]" />
+            <div className="divider border-b border-[#fd1313]" />
             <li key="new audit">
               <a className="px-2 py-2 my-2 flex items-center text-orange-500 active:bg-orange-500 focus:bg-orange-500 hover:bg-orange-500 hover:text-white cursor-pointer rounded-md">
                 <BsPlusLg />
@@ -62,7 +66,7 @@ const Sidebar = () => {
             </li>
           </ul>
           <ul className="sidebar--links-bottom">
-            <a className="flex items-center text-white active:text-indigo-500 hover:text-indigo-500 cursor-pointer">
+            <a className="flex items-center text-white active:text-red hover:text-indigo-500 cursor-pointer">
               <CiSettings />
               <span className="ml-2">Settings</span>
             </a>

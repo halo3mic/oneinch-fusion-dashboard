@@ -40,11 +40,11 @@ const App = () => {
       body: `'Oxanium', cursive`,
     },
     colors: {
-      connectButtonBackground: "#FF5F08",
-      connectButtonInnerBackground: "hsla(21, 100%, 50%, 0.58)",
-      connectButtonText: "#FF5F08",
+      connectButtonBackground: "#1CC3DD",
+      connectButtonInnerBackground: "#1CC3DD",
+      connectButtonText: "#1CC3DD",
     },
-    radii: {
+    radius: {
       connectButton: "0.375rem",
     },
   };
@@ -74,11 +74,11 @@ const App = () => {
         <RainbowKitProvider
           chains={chains}
           theme={darkTheme({
-            accentColor: "#FF5F08",
-            accentColorForeground: "white",
+            accentColor: "#1CC3DD",
+            accentColorForeground: "#163248",
             borderRadius: "small",
             fontStack: "system",
-            overlayBlur: "small",
+            overlayBlur: "large",
           })}
         >
           <RouterProvider router={router} />
