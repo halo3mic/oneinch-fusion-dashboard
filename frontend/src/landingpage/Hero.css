@@ -1,0 +1,94 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import 'animate.css';
+
+@import url('https://fonts.googleapis.com/css2?family=Oxanium&display=swap');
+
+/* HERO */
+
+.Hero-Section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+}
+
+.Hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5rem;
+  gap: 5rem;
+  height: 700px;
+  animation-duration: 2s;
+  animation-name: fadeIn;
+}
+
+.hero-text {
+  font-family: 'Oxanium', cursive;
+  text-align: left;
+  font-size: 70px;
+  color: white;
+}
+
+.hero-subtext {
+  font-family: 'Oxanium';
+  font-style: normal;
+  font-size: 25px;
+  font-weight: 200;
+  color: yellowgreen;
+}
+
+.hero-image {
+  padding-top: 5rem;
+  animation-duration: 2s;
+  animation-name: fadeInUp;
+}
+
+/* Responsive styles */
+
+@media (max-width: 768px) {
+  .Hero {
+    margin: 2rem;
+    gap: 2rem;
+    height: auto;
+    align-items: center;
+  }
+
+  .hero-text {
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .hero-subtext {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .hero-image {
+    padding-top: 2rem;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .hero-text {
+    font-size: 60px;
+  }
+
+  .hero-subtext {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-text {
+    font-size: 70px;
+  }
+
+  .hero-subtext {
+    font-size: 25px;
+  }
+}
