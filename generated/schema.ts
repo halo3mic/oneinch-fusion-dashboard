@@ -2505,13 +2505,21 @@ export class Transaction extends Entity {
     this.set("gasPrice", Value.fromBigInt(value));
   }
 
-  get gasUsed(): BigInt {
+  get gasUsed(): BigInt | null {
     let value = this.get("gasUsed");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set gasUsed(value: BigInt) {
-    this.set("gasUsed", Value.fromBigInt(value));
+  set gasUsed(value: BigInt | null) {
+    if (!value) {
+      this.unset("gasUsed");
+    } else {
+      this.set("gasUsed", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 
@@ -2593,35 +2601,35 @@ export class Settlement extends Entity {
     this.set("takerAsset", Value.fromBytes(value));
   }
 
-  get makingAmount(): BigInt {
-    let value = this.get("makingAmount");
+  get offeredMakingAmount(): BigInt {
+    let value = this.get("offeredMakingAmount");
     return value!.toBigInt();
   }
 
-  set makingAmount(value: BigInt) {
-    this.set("makingAmount", Value.fromBigInt(value));
+  set offeredMakingAmount(value: BigInt) {
+    this.set("offeredMakingAmount", Value.fromBigInt(value));
   }
 
-  get takingAmountMin(): BigInt {
-    let value = this.get("takingAmountMin");
+  get offeredTakingAmoun(): BigInt {
+    let value = this.get("offeredTakingAmoun");
     return value!.toBigInt();
   }
 
-  set takingAmountMin(value: BigInt) {
-    this.set("takingAmountMin", Value.fromBigInt(value));
+  set offeredTakingAmoun(value: BigInt) {
+    this.set("offeredTakingAmoun", Value.fromBigInt(value));
   }
 
-  get makingAmountActual(): BigInt {
-    let value = this.get("makingAmountActual");
+  get actualMakingAmount(): BigInt {
+    let value = this.get("actualMakingAmount");
     return value!.toBigInt();
   }
 
-  set makingAmountActual(value: BigInt) {
-    this.set("makingAmountActual", Value.fromBigInt(value));
+  set actualMakingAmount(value: BigInt) {
+    this.set("actualMakingAmount", Value.fromBigInt(value));
   }
 
-  get takingAmountActual(): BigInt | null {
-    let value = this.get("takingAmountActual");
+  get actualTakingAmount(): BigInt | null {
+    let value = this.get("actualTakingAmount");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
@@ -2629,11 +2637,11 @@ export class Settlement extends Entity {
     }
   }
 
-  set takingAmountActual(value: BigInt | null) {
+  set actualTakingAmount(value: BigInt | null) {
     if (!value) {
-      this.unset("takingAmountActual");
+      this.unset("actualTakingAmount");
     } else {
-      this.set("takingAmountActual", Value.fromBigInt(<BigInt>value));
+      this.set("actualTakingAmount", Value.fromBigInt(<BigInt>value));
     }
   }
 

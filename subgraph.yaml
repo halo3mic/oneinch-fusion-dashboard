@@ -163,7 +163,7 @@ dataSources:
       abi: Settlement
       startBlock: 16241236
     mapping:
-      kind: ethereum/events
+      kind: ethereum/contract
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
@@ -183,7 +183,7 @@ dataSources:
       abi: AggregationRouterV5
       startBlock: 15894742
     mapping:
-      kind: ethereum/events
+      kind: ethereum/contract
       apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
