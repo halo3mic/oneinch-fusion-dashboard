@@ -225,6 +225,7 @@ type OrderFilled @entity(immutable: true) {
 type Resolver @entity(immutable: false) {
 	id: Bytes!
 	resolvedCount: BigInt!
+	defaultFarm: Bytes!
 }
 
 type ResolverVolPerToken @entity(immutable: false) {
@@ -270,4 +271,10 @@ type ResolverTokenVolume @entity(immutable: true) {
 	resolver: Resolver!
 	volume: BigInt!
 	asset: Token!
+}
+
+type DelegationInfo @entity(immutable: false) {
+	id: Bytes!
+	holder: Bytes!
+	amount: BigInt!
 }

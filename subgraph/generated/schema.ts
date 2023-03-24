@@ -2064,6 +2064,15 @@ export class Resolver extends Entity {
   set resolvedCount(value: BigInt) {
     this.set("resolvedCount", Value.fromBigInt(value));
   }
+
+  get defaultFarm(): Bytes {
+    let value = this.get("defaultFarm");
+    return value!.toBytes();
+  }
+
+  set defaultFarm(value: Bytes) {
+    this.set("defaultFarm", Value.fromBytes(value));
+  }
 }
 
 export class ResolverVolPerToken extends Entity {
@@ -2552,5 +2561,57 @@ export class ResolverTokenVolume extends Entity {
 
   set asset(value: Bytes) {
     this.set("asset", Value.fromBytes(value));
+  }
+}
+
+export class DelegationInfo extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save DelegationInfo entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type DelegationInfo must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("DelegationInfo", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): DelegationInfo | null {
+    return changetype<DelegationInfo | null>(
+      store.get("DelegationInfo", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get holder(): Bytes {
+    let value = this.get("holder");
+    return value!.toBytes();
+  }
+
+  set holder(value: Bytes) {
+    this.set("holder", Value.fromBytes(value));
+  }
+
+  get amount(): BigInt {
+    let value = this.get("amount");
+    return value!.toBigInt();
+  }
+
+  set amount(value: BigInt) {
+    this.set("amount", Value.fromBigInt(value));
   }
 }
