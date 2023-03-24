@@ -1,0 +1,15 @@
+{
+  "name": "oneinch-graph",
+  "version": "1.0.0",
+  "description": "The graph for 1inch Fusion ",
+  "main": "index.js",
+  "author": "halo3mic",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@graphprotocol/common-ts": "^2.0.1",
+    "@graphprotocol/graph-cli": "^0.25.1",
+    "@graphprotocol/graph-ts": "^0.25.1",
+    "typescript": "^5.0.0"
+  }
+}

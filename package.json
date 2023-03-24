@@ -1,9 +1,0 @@
-{
-  "name": "oneinch-graph",
-  "version": "1.0.0",
-  "description": "The graph for 1inch Fusion ",
-  "main": "index.js",
-  "author": "halo3mic",
-  "license": "MIT",
-  "private": false
-}
