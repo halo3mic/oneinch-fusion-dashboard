@@ -10,16 +10,16 @@ import {
   BigInt
 } from "@graphprotocol/graph-ts";
 
-export class PowerPodApproval extends ethereum.Event {
-  get params(): PowerPodApproval__Params {
-    return new PowerPodApproval__Params(this);
+export class Approval extends ethereum.Event {
+  get params(): Approval__Params {
+    return new Approval__Params(this);
   }
 }
 
-export class PowerPodApproval__Params {
-  _event: PowerPodApproval;
+export class Approval__Params {
+  _event: Approval;
 
-  constructor(event: PowerPodApproval) {
+  constructor(event: Approval) {
     this._event = event;
   }
 
@@ -36,16 +36,16 @@ export class PowerPodApproval__Params {
   }
 }
 
-export class PowerPodDefaultFarmSet extends ethereum.Event {
-  get params(): PowerPodDefaultFarmSet__Params {
-    return new PowerPodDefaultFarmSet__Params(this);
+export class DefaultFarmSet extends ethereum.Event {
+  get params(): DefaultFarmSet__Params {
+    return new DefaultFarmSet__Params(this);
   }
 }
 
-export class PowerPodDefaultFarmSet__Params {
-  _event: PowerPodDefaultFarmSet;
+export class DefaultFarmSet__Params {
+  _event: DefaultFarmSet;
 
-  constructor(event: PowerPodDefaultFarmSet) {
+  constructor(event: DefaultFarmSet) {
     this._event = event;
   }
 
@@ -54,110 +54,16 @@ export class PowerPodDefaultFarmSet__Params {
   }
 }
 
-export class PowerPodEmergencyExitSet extends ethereum.Event {
-  get params(): PowerPodEmergencyExitSet__Params {
-    return new PowerPodEmergencyExitSet__Params(this);
+export class Delegated extends ethereum.Event {
+  get params(): Delegated__Params {
+    return new Delegated__Params(this);
   }
 }
 
-export class PowerPodEmergencyExitSet__Params {
-  _event: PowerPodEmergencyExitSet;
+export class Delegated__Params {
+  _event: Delegated;
 
-  constructor(event: PowerPodEmergencyExitSet) {
-    this._event = event;
-  }
-
-  get status(): boolean {
-    return this._event.parameters[0].value.toBoolean();
-  }
-}
-
-export class PowerPodFeeReceiverSet extends ethereum.Event {
-  get params(): PowerPodFeeReceiverSet__Params {
-    return new PowerPodFeeReceiverSet__Params(this);
-  }
-}
-
-export class PowerPodFeeReceiverSet__Params {
-  _event: PowerPodFeeReceiverSet;
-
-  constructor(event: PowerPodFeeReceiverSet) {
-    this._event = event;
-  }
-
-  get receiver(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-}
-
-export class PowerPodMaxLossRatioSet extends ethereum.Event {
-  get params(): PowerPodMaxLossRatioSet__Params {
-    return new PowerPodMaxLossRatioSet__Params(this);
-  }
-}
-
-export class PowerPodMaxLossRatioSet__Params {
-  _event: PowerPodMaxLossRatioSet;
-
-  constructor(event: PowerPodMaxLossRatioSet) {
-    this._event = event;
-  }
-
-  get ratio(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-}
-
-export class PowerPodMinLockPeriodRatioSet extends ethereum.Event {
-  get params(): PowerPodMinLockPeriodRatioSet__Params {
-    return new PowerPodMinLockPeriodRatioSet__Params(this);
-  }
-}
-
-export class PowerPodMinLockPeriodRatioSet__Params {
-  _event: PowerPodMinLockPeriodRatioSet;
-
-  constructor(event: PowerPodMinLockPeriodRatioSet) {
-    this._event = event;
-  }
-
-  get ratio(): BigInt {
-    return this._event.parameters[0].value.toBigInt();
-  }
-}
-
-export class PowerPodOwnershipTransferred extends ethereum.Event {
-  get params(): PowerPodOwnershipTransferred__Params {
-    return new PowerPodOwnershipTransferred__Params(this);
-  }
-}
-
-export class PowerPodOwnershipTransferred__Params {
-  _event: PowerPodOwnershipTransferred;
-
-  constructor(event: PowerPodOwnershipTransferred) {
-    this._event = event;
-  }
-
-  get previousOwner(): Address {
-    return this._event.parameters[0].value.toAddress();
-  }
-
-  get newOwner(): Address {
-    return this._event.parameters[1].value.toAddress();
-  }
-}
-
-export class PowerPodPodAdded extends ethereum.Event {
-  get params(): PowerPodPodAdded__Params {
-    return new PowerPodPodAdded__Params(this);
-  }
-}
-
-export class PowerPodPodAdded__Params {
-  _event: PowerPodPodAdded;
-
-  constructor(event: PowerPodPodAdded) {
+  constructor(event: Delegated) {
     this._event = event;
   }
 
@@ -165,43 +71,39 @@ export class PowerPodPodAdded__Params {
     return this._event.parameters[0].value.toAddress();
   }
 
-  get pod(): Address {
+  get delegatee(): Address {
     return this._event.parameters[1].value.toAddress();
   }
 }
 
-export class PowerPodPodRemoved extends ethereum.Event {
-  get params(): PowerPodPodRemoved__Params {
-    return new PowerPodPodRemoved__Params(this);
+export class RegisterDelegatee extends ethereum.Event {
+  get params(): RegisterDelegatee__Params {
+    return new RegisterDelegatee__Params(this);
   }
 }
 
-export class PowerPodPodRemoved__Params {
-  _event: PowerPodPodRemoved;
+export class RegisterDelegatee__Params {
+  _event: RegisterDelegatee;
 
-  constructor(event: PowerPodPodRemoved) {
+  constructor(event: RegisterDelegatee) {
     this._event = event;
   }
 
-  get account(): Address {
+  get delegatee(): Address {
     return this._event.parameters[0].value.toAddress();
   }
+}
 
-  get pod(): Address {
-    return this._event.parameters[1].value.toAddress();
+export class Transfer extends ethereum.Event {
+  get params(): Transfer__Params {
+    return new Transfer__Params(this);
   }
 }
 
-export class PowerPodTransfer extends ethereum.Event {
-  get params(): PowerPodTransfer__Params {
-    return new PowerPodTransfer__Params(this);
-  }
-}
+export class Transfer__Params {
+  _event: Transfer;
 
-export class PowerPodTransfer__Params {
-  _event: PowerPodTransfer;
-
-  constructor(event: PowerPodTransfer) {
+  constructor(event: Transfer) {
     this._event = event;
   }
 
@@ -218,119 +120,9 @@ export class PowerPodTransfer__Params {
   }
 }
 
-export class PowerPod__depositorsResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: BigInt;
-
-  constructor(value0: BigInt, value1: BigInt, value2: BigInt) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
-    return map;
-  }
-
-  getLockTime(): BigInt {
-    return this.value0;
-  }
-
-  getUnlockTime(): BigInt {
-    return this.value1;
-  }
-
-  getAmount(): BigInt {
-    return this.value2;
-  }
-}
-
-export class PowerPod__earlyWithdrawLossResult {
-  value0: BigInt;
-  value1: BigInt;
-  value2: boolean;
-
-  constructor(value0: BigInt, value1: BigInt, value2: boolean) {
-    this.value0 = value0;
-    this.value1 = value1;
-    this.value2 = value2;
-  }
-
-  toMap(): TypedMap<string, ethereum.Value> {
-    let map = new TypedMap<string, ethereum.Value>();
-    map.set("value0", ethereum.Value.fromUnsignedBigInt(this.value0));
-    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
-    map.set("value2", ethereum.Value.fromBoolean(this.value2));
-    return map;
-  }
-
-  getLoss(): BigInt {
-    return this.value0;
-  }
-
-  getRet(): BigInt {
-    return this.value1;
-  }
-
-  getCanWithdraw(): boolean {
-    return this.value2;
-  }
-}
-
 export class PowerPod extends ethereum.SmartContract {
   static bind(address: Address): PowerPod {
     return new PowerPod("PowerPod", address);
-  }
-
-  MAX_LOCK_PERIOD(): BigInt {
-    let result = super.call(
-      "MAX_LOCK_PERIOD",
-      "MAX_LOCK_PERIOD():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_MAX_LOCK_PERIOD(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "MAX_LOCK_PERIOD",
-      "MAX_LOCK_PERIOD():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  MIN_LOCK_PERIOD(): BigInt {
-    let result = super.call(
-      "MIN_LOCK_PERIOD",
-      "MIN_LOCK_PERIOD():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_MIN_LOCK_PERIOD(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "MIN_LOCK_PERIOD",
-      "MIN_LOCK_PERIOD():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   allowance(owner: Address, spender: Address): BigInt {
@@ -443,14 +235,20 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  defaultFarm(): Address {
-    let result = super.call("defaultFarm", "defaultFarm():(address)", []);
+  defaultFarms(param0: Address): Address {
+    let result = super.call("defaultFarms", "defaultFarms(address):(address)", [
+      ethereum.Value.fromAddress(param0)
+    ]);
 
     return result[0].toAddress();
   }
 
-  try_defaultFarm(): ethereum.CallResult<Address> {
-    let result = super.tryCall("defaultFarm", "defaultFarm():(address)", []);
+  try_defaultFarms(param0: Address): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "defaultFarms",
+      "defaultFarms(address):(address)",
+      [ethereum.Value.fromAddress(param0)]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -458,89 +256,23 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  depositors(param0: Address): PowerPod__depositorsResult {
-    let result = super.call(
-      "depositors",
-      "depositors(address):(uint40,uint40,uint176)",
-      [ethereum.Value.fromAddress(param0)]
-    );
+  delegated(param0: Address): Address {
+    let result = super.call("delegated", "delegated(address):(address)", [
+      ethereum.Value.fromAddress(param0)
+    ]);
 
-    return new PowerPod__depositorsResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBigInt()
-    );
+    return result[0].toAddress();
   }
 
-  try_depositors(
-    param0: Address
-  ): ethereum.CallResult<PowerPod__depositorsResult> {
-    let result = super.tryCall(
-      "depositors",
-      "depositors(address):(uint40,uint40,uint176)",
-      [ethereum.Value.fromAddress(param0)]
-    );
+  try_delegated(param0: Address): ethereum.CallResult<Address> {
+    let result = super.tryCall("delegated", "delegated(address):(address)", [
+      ethereum.Value.fromAddress(param0)
+    ]);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new PowerPod__depositorsResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBigInt()
-      )
-    );
-  }
-
-  earlyWithdrawLoss(account: Address): PowerPod__earlyWithdrawLossResult {
-    let result = super.call(
-      "earlyWithdrawLoss",
-      "earlyWithdrawLoss(address):(uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(account)]
-    );
-
-    return new PowerPod__earlyWithdrawLossResult(
-      result[0].toBigInt(),
-      result[1].toBigInt(),
-      result[2].toBoolean()
-    );
-  }
-
-  try_earlyWithdrawLoss(
-    account: Address
-  ): ethereum.CallResult<PowerPod__earlyWithdrawLossResult> {
-    let result = super.tryCall(
-      "earlyWithdrawLoss",
-      "earlyWithdrawLoss(address):(uint256,uint256,bool)",
-      [ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(
-      new PowerPod__earlyWithdrawLossResult(
-        value[0].toBigInt(),
-        value[1].toBigInt(),
-        value[2].toBoolean()
-      )
-    );
-  }
-
-  emergencyExit(): boolean {
-    let result = super.call("emergencyExit", "emergencyExit():(bool)", []);
-
-    return result[0].toBoolean();
-  }
-
-  try_emergencyExit(): ethereum.CallResult<boolean> {
-    let result = super.tryCall("emergencyExit", "emergencyExit():(bool)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   expBase(): BigInt {
@@ -556,42 +288,6 @@ export class PowerPod extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  feeReceiver(): Address {
-    let result = super.call("feeReceiver", "feeReceiver():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_feeReceiver(): ethereum.CallResult<Address> {
-    let result = super.tryCall("feeReceiver", "feeReceiver():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
-  hasPod(account: Address, pod: Address): boolean {
-    let result = super.call("hasPod", "hasPod(address,address):(bool)", [
-      ethereum.Value.fromAddress(account),
-      ethereum.Value.fromAddress(pod)
-    ]);
-
-    return result[0].toBoolean();
-  }
-
-  try_hasPod(account: Address, pod: Address): ethereum.CallResult<boolean> {
-    let result = super.tryCall("hasPod", "hasPod(address,address):(bool)", [
-      ethereum.Value.fromAddress(account),
-      ethereum.Value.fromAddress(pod)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
   increaseAllowance(param0: Address, param1: BigInt): boolean {
@@ -626,37 +322,14 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  maxLossRatio(): BigInt {
-    let result = super.call("maxLossRatio", "maxLossRatio():(uint256)", []);
+  maxSharePods(): BigInt {
+    let result = super.call("maxSharePods", "maxSharePods():(uint256)", []);
 
     return result[0].toBigInt();
   }
 
-  try_maxLossRatio(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("maxLossRatio", "maxLossRatio():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  minLockPeriodRatio(): BigInt {
-    let result = super.call(
-      "minLockPeriodRatio",
-      "minLockPeriodRatio():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_minLockPeriodRatio(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "minLockPeriodRatio",
-      "minLockPeriodRatio():(uint256)",
-      []
-    );
+  try_maxSharePods(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("maxSharePods", "maxSharePods():(uint256)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -679,21 +352,6 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  oneInch(): Address {
-    let result = super.call("oneInch", "oneInch():(address)", []);
-
-    return result[0].toAddress();
-  }
-
-  try_oneInch(): ethereum.CallResult<Address> {
-    let result = super.tryCall("oneInch", "oneInch():(address)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddress());
-  }
-
   origin(): BigInt {
     let result = super.call("origin", "origin():(uint256)", []);
 
@@ -709,14 +367,21 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
-  owner(): Address {
-    let result = super.call("owner", "owner():(address)", []);
+  register(name: string, symbol: string): Address {
+    let result = super.call("register", "register(string,string):(address)", [
+      ethereum.Value.fromString(name),
+      ethereum.Value.fromString(symbol)
+    ]);
 
     return result[0].toAddress();
   }
 
-  try_owner(): ethereum.CallResult<Address> {
-    let result = super.tryCall("owner", "owner():(address)", []);
+  try_register(name: string, symbol: string): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "register",
+      "register(string,string):(address)",
+      [ethereum.Value.fromString(name), ethereum.Value.fromString(symbol)]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -724,20 +389,20 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  podAt(account: Address, index: BigInt): Address {
-    let result = super.call("podAt", "podAt(address,uint256):(address)", [
-      ethereum.Value.fromAddress(account),
-      ethereum.Value.fromUnsignedBigInt(index)
+  registration(param0: Address): Address {
+    let result = super.call("registration", "registration(address):(address)", [
+      ethereum.Value.fromAddress(param0)
     ]);
 
     return result[0].toAddress();
   }
 
-  try_podAt(account: Address, index: BigInt): ethereum.CallResult<Address> {
-    let result = super.tryCall("podAt", "podAt(address,uint256):(address)", [
-      ethereum.Value.fromAddress(account),
-      ethereum.Value.fromUnsignedBigInt(index)
-    ]);
+  try_registration(param0: Address): ethereum.CallResult<Address> {
+    let result = super.tryCall(
+      "registration",
+      "registration(address):(address)",
+      [ethereum.Value.fromAddress(param0)]
+    );
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -745,101 +410,22 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
-  podBalanceOf(pod: Address, account: Address): BigInt {
+  sharePodGasLimit(): BigInt {
     let result = super.call(
-      "podBalanceOf",
-      "podBalanceOf(address,address):(uint256)",
-      [ethereum.Value.fromAddress(pod), ethereum.Value.fromAddress(account)]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_podBalanceOf(
-    pod: Address,
-    account: Address
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "podBalanceOf",
-      "podBalanceOf(address,address):(uint256)",
-      [ethereum.Value.fromAddress(pod), ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  podCallGasLimit(): BigInt {
-    let result = super.call(
-      "podCallGasLimit",
-      "podCallGasLimit():(uint256)",
+      "sharePodGasLimit",
+      "sharePodGasLimit():(uint256)",
       []
     );
 
     return result[0].toBigInt();
   }
 
-  try_podCallGasLimit(): ethereum.CallResult<BigInt> {
+  try_sharePodGasLimit(): ethereum.CallResult<BigInt> {
     let result = super.tryCall(
-      "podCallGasLimit",
-      "podCallGasLimit():(uint256)",
+      "sharePodGasLimit",
+      "sharePodGasLimit():(uint256)",
       []
     );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  pods(account: Address): Array<Address> {
-    let result = super.call("pods", "pods(address):(address[])", [
-      ethereum.Value.fromAddress(account)
-    ]);
-
-    return result[0].toAddressArray();
-  }
-
-  try_pods(account: Address): ethereum.CallResult<Array<Address>> {
-    let result = super.tryCall("pods", "pods(address):(address[])", [
-      ethereum.Value.fromAddress(account)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toAddressArray());
-  }
-
-  podsCount(account: Address): BigInt {
-    let result = super.call("podsCount", "podsCount(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_podsCount(account: Address): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("podsCount", "podsCount(address):(uint256)", [
-      ethereum.Value.fromAddress(account)
-    ]);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  podsLimit(): BigInt {
-    let result = super.call("podsLimit", "podsLimit():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_podsLimit(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("podsLimit", "podsLimit():(uint256)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
@@ -862,23 +448,19 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toString());
   }
 
-  totalDeposits(): BigInt {
-    let result = super.call("totalDeposits", "totalDeposits():(uint256)", []);
+  token(): Address {
+    let result = super.call("token", "token():(address)", []);
 
-    return result[0].toBigInt();
+    return result[0].toAddress();
   }
 
-  try_totalDeposits(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "totalDeposits",
-      "totalDeposits():(uint256)",
-      []
-    );
+  try_token(): ethereum.CallResult<Address> {
+    let result = super.tryCall("token", "token():(address)", []);
     if (result.reverted) {
       return new ethereum.CallResult();
     }
     let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
+    return ethereum.CallResult.fromValue(value[0].toAddress());
   }
 
   totalSupply(): BigInt {
@@ -952,59 +534,6 @@ export class PowerPod extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(value[0].toBoolean());
   }
 
-  votingPower(balance: BigInt): BigInt {
-    let result = super.call("votingPower", "votingPower(uint256):(uint256)", [
-      ethereum.Value.fromUnsignedBigInt(balance)
-    ]);
-
-    return result[0].toBigInt();
-  }
-
-  try_votingPower(balance: BigInt): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "votingPower",
-      "votingPower(uint256):(uint256)",
-      [ethereum.Value.fromUnsignedBigInt(balance)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  votingPowerAt(balance: BigInt, timestamp: BigInt): BigInt {
-    let result = super.call(
-      "votingPowerAt",
-      "votingPowerAt(uint256,uint256):(uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(balance),
-        ethereum.Value.fromUnsignedBigInt(timestamp)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_votingPowerAt(
-    balance: BigInt,
-    timestamp: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "votingPowerAt",
-      "votingPowerAt(uint256,uint256):(uint256)",
-      [
-        ethereum.Value.fromUnsignedBigInt(balance),
-        ethereum.Value.fromUnsignedBigInt(timestamp)
-      ]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   votingPowerOf(account: Address): BigInt {
     let result = super.call(
       "votingPowerOf",
@@ -1020,38 +549,6 @@ export class PowerPod extends ethereum.SmartContract {
       "votingPowerOf",
       "votingPowerOf(address):(uint256)",
       [ethereum.Value.fromAddress(account)]
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  votingPowerOfAt(account: Address, timestamp: BigInt): BigInt {
-    let result = super.call(
-      "votingPowerOfAt",
-      "votingPowerOfAt(address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(timestamp)
-      ]
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_votingPowerOfAt(
-    account: Address,
-    timestamp: BigInt
-  ): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "votingPowerOfAt",
-      "votingPowerOfAt(address,uint256):(uint256)",
-      [
-        ethereum.Value.fromAddress(account),
-        ethereum.Value.fromUnsignedBigInt(timestamp)
-      ]
     );
     if (result.reverted) {
       return new ethereum.CallResult();
@@ -1078,12 +575,16 @@ export class ConstructorCall__Inputs {
     this._call = call;
   }
 
-  get oneInch_(): Address {
-    return this._call.inputValues[0].value.toAddress();
+  get name_(): string {
+    return this._call.inputValues[0].value.toString();
   }
 
-  get expBase_(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
+  get symbol_(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+
+  get st1inch(): Address {
+    return this._call.inputValues[2].value.toAddress();
   }
 }
 
@@ -1095,365 +596,71 @@ export class ConstructorCall__Outputs {
   }
 }
 
-export class AddPodCall extends ethereum.Call {
-  get inputs(): AddPodCall__Inputs {
-    return new AddPodCall__Inputs(this);
+export class DelegateCall extends ethereum.Call {
+  get inputs(): DelegateCall__Inputs {
+    return new DelegateCall__Inputs(this);
   }
 
-  get outputs(): AddPodCall__Outputs {
-    return new AddPodCall__Outputs(this);
+  get outputs(): DelegateCall__Outputs {
+    return new DelegateCall__Outputs(this);
   }
 }
 
-export class AddPodCall__Inputs {
-  _call: AddPodCall;
+export class DelegateCall__Inputs {
+  _call: DelegateCall;
 
-  constructor(call: AddPodCall) {
+  constructor(call: DelegateCall) {
     this._call = call;
   }
 
-  get pod(): Address {
+  get delegatee(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
 
-export class AddPodCall__Outputs {
-  _call: AddPodCall;
+export class DelegateCall__Outputs {
+  _call: DelegateCall;
 
-  constructor(call: AddPodCall) {
+  constructor(call: DelegateCall) {
     this._call = call;
   }
 }
 
-export class DepositCall extends ethereum.Call {
-  get inputs(): DepositCall__Inputs {
-    return new DepositCall__Inputs(this);
+export class RegisterCall extends ethereum.Call {
+  get inputs(): RegisterCall__Inputs {
+    return new RegisterCall__Inputs(this);
   }
 
-  get outputs(): DepositCall__Outputs {
-    return new DepositCall__Outputs(this);
+  get outputs(): RegisterCall__Outputs {
+    return new RegisterCall__Outputs(this);
   }
 }
 
-export class DepositCall__Inputs {
-  _call: DepositCall;
+export class RegisterCall__Inputs {
+  _call: RegisterCall;
 
-  constructor(call: DepositCall) {
+  constructor(call: RegisterCall) {
     this._call = call;
   }
 
-  get amount(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
+  get name(): string {
+    return this._call.inputValues[0].value.toString();
   }
 
-  get duration(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class DepositCall__Outputs {
-  _call: DepositCall;
-
-  constructor(call: DepositCall) {
-    this._call = call;
+  get symbol(): string {
+    return this._call.inputValues[1].value.toString();
   }
 }
 
-export class DepositForCall extends ethereum.Call {
-  get inputs(): DepositForCall__Inputs {
-    return new DepositForCall__Inputs(this);
-  }
+export class RegisterCall__Outputs {
+  _call: RegisterCall;
 
-  get outputs(): DepositForCall__Outputs {
-    return new DepositForCall__Outputs(this);
-  }
-}
-
-export class DepositForCall__Inputs {
-  _call: DepositForCall;
-
-  constructor(call: DepositForCall) {
+  constructor(call: RegisterCall) {
     this._call = call;
   }
 
-  get account(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class DepositForCall__Outputs {
-  _call: DepositForCall;
-
-  constructor(call: DepositForCall) {
-    this._call = call;
-  }
-}
-
-export class DepositForWithPermitCall extends ethereum.Call {
-  get inputs(): DepositForWithPermitCall__Inputs {
-    return new DepositForWithPermitCall__Inputs(this);
-  }
-
-  get outputs(): DepositForWithPermitCall__Outputs {
-    return new DepositForWithPermitCall__Outputs(this);
-  }
-}
-
-export class DepositForWithPermitCall__Inputs {
-  _call: DepositForWithPermitCall;
-
-  constructor(call: DepositForWithPermitCall) {
-    this._call = call;
-  }
-
-  get account(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get permit(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
-  }
-}
-
-export class DepositForWithPermitCall__Outputs {
-  _call: DepositForWithPermitCall;
-
-  constructor(call: DepositForWithPermitCall) {
-    this._call = call;
-  }
-}
-
-export class DepositWithPermitCall extends ethereum.Call {
-  get inputs(): DepositWithPermitCall__Inputs {
-    return new DepositWithPermitCall__Inputs(this);
-  }
-
-  get outputs(): DepositWithPermitCall__Outputs {
-    return new DepositWithPermitCall__Outputs(this);
-  }
-}
-
-export class DepositWithPermitCall__Inputs {
-  _call: DepositWithPermitCall;
-
-  constructor(call: DepositWithPermitCall) {
-    this._call = call;
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get duration(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get permit(): Bytes {
-    return this._call.inputValues[2].value.toBytes();
-  }
-}
-
-export class DepositWithPermitCall__Outputs {
-  _call: DepositWithPermitCall;
-
-  constructor(call: DepositWithPermitCall) {
-    this._call = call;
-  }
-}
-
-export class EarlyWithdrawCall extends ethereum.Call {
-  get inputs(): EarlyWithdrawCall__Inputs {
-    return new EarlyWithdrawCall__Inputs(this);
-  }
-
-  get outputs(): EarlyWithdrawCall__Outputs {
-    return new EarlyWithdrawCall__Outputs(this);
-  }
-}
-
-export class EarlyWithdrawCall__Inputs {
-  _call: EarlyWithdrawCall;
-
-  constructor(call: EarlyWithdrawCall) {
-    this._call = call;
-  }
-
-  get minReturn(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-
-  get maxLoss(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class EarlyWithdrawCall__Outputs {
-  _call: EarlyWithdrawCall;
-
-  constructor(call: EarlyWithdrawCall) {
-    this._call = call;
-  }
-}
-
-export class EarlyWithdrawToCall extends ethereum.Call {
-  get inputs(): EarlyWithdrawToCall__Inputs {
-    return new EarlyWithdrawToCall__Inputs(this);
-  }
-
-  get outputs(): EarlyWithdrawToCall__Outputs {
-    return new EarlyWithdrawToCall__Outputs(this);
-  }
-}
-
-export class EarlyWithdrawToCall__Inputs {
-  _call: EarlyWithdrawToCall;
-
-  constructor(call: EarlyWithdrawToCall) {
-    this._call = call;
-  }
-
-  get to(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get minReturn(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-
-  get maxLoss(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
-  }
-}
-
-export class EarlyWithdrawToCall__Outputs {
-  _call: EarlyWithdrawToCall;
-
-  constructor(call: EarlyWithdrawToCall) {
-    this._call = call;
-  }
-}
-
-export class RemoveAllPodsCall extends ethereum.Call {
-  get inputs(): RemoveAllPodsCall__Inputs {
-    return new RemoveAllPodsCall__Inputs(this);
-  }
-
-  get outputs(): RemoveAllPodsCall__Outputs {
-    return new RemoveAllPodsCall__Outputs(this);
-  }
-}
-
-export class RemoveAllPodsCall__Inputs {
-  _call: RemoveAllPodsCall;
-
-  constructor(call: RemoveAllPodsCall) {
-    this._call = call;
-  }
-}
-
-export class RemoveAllPodsCall__Outputs {
-  _call: RemoveAllPodsCall;
-
-  constructor(call: RemoveAllPodsCall) {
-    this._call = call;
-  }
-}
-
-export class RemovePodCall extends ethereum.Call {
-  get inputs(): RemovePodCall__Inputs {
-    return new RemovePodCall__Inputs(this);
-  }
-
-  get outputs(): RemovePodCall__Outputs {
-    return new RemovePodCall__Outputs(this);
-  }
-}
-
-export class RemovePodCall__Inputs {
-  _call: RemovePodCall;
-
-  constructor(call: RemovePodCall) {
-    this._call = call;
-  }
-
-  get pod(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class RemovePodCall__Outputs {
-  _call: RemovePodCall;
-
-  constructor(call: RemovePodCall) {
-    this._call = call;
-  }
-}
-
-export class RenounceOwnershipCall extends ethereum.Call {
-  get inputs(): RenounceOwnershipCall__Inputs {
-    return new RenounceOwnershipCall__Inputs(this);
-  }
-
-  get outputs(): RenounceOwnershipCall__Outputs {
-    return new RenounceOwnershipCall__Outputs(this);
-  }
-}
-
-export class RenounceOwnershipCall__Inputs {
-  _call: RenounceOwnershipCall;
-
-  constructor(call: RenounceOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class RenounceOwnershipCall__Outputs {
-  _call: RenounceOwnershipCall;
-
-  constructor(call: RenounceOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class RescueFundsCall extends ethereum.Call {
-  get inputs(): RescueFundsCall__Inputs {
-    return new RescueFundsCall__Inputs(this);
-  }
-
-  get outputs(): RescueFundsCall__Outputs {
-    return new RescueFundsCall__Outputs(this);
-  }
-}
-
-export class RescueFundsCall__Inputs {
-  _call: RescueFundsCall;
-
-  constructor(call: RescueFundsCall) {
-    this._call = call;
-  }
-
-  get token(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-
-  get amount(): BigInt {
-    return this._call.inputValues[1].value.toBigInt();
-  }
-}
-
-export class RescueFundsCall__Outputs {
-  _call: RescueFundsCall;
-
-  constructor(call: RescueFundsCall) {
-    this._call = call;
+  get shareToken(): Address {
+    return this._call.outputValues[0].value.toAddress();
   }
 }
 
@@ -1474,7 +681,7 @@ export class SetDefaultFarmCall__Inputs {
     this._call = call;
   }
 
-  get defaultFarm_(): Address {
+  get farm(): Address {
     return this._call.inputValues[0].value.toAddress();
   }
 }
@@ -1487,208 +694,40 @@ export class SetDefaultFarmCall__Outputs {
   }
 }
 
-export class SetEmergencyExitCall extends ethereum.Call {
-  get inputs(): SetEmergencyExitCall__Inputs {
-    return new SetEmergencyExitCall__Inputs(this);
+export class UpdateBalancesCall extends ethereum.Call {
+  get inputs(): UpdateBalancesCall__Inputs {
+    return new UpdateBalancesCall__Inputs(this);
   }
 
-  get outputs(): SetEmergencyExitCall__Outputs {
-    return new SetEmergencyExitCall__Outputs(this);
+  get outputs(): UpdateBalancesCall__Outputs {
+    return new UpdateBalancesCall__Outputs(this);
   }
 }
 
-export class SetEmergencyExitCall__Inputs {
-  _call: SetEmergencyExitCall;
+export class UpdateBalancesCall__Inputs {
+  _call: UpdateBalancesCall;
 
-  constructor(call: SetEmergencyExitCall) {
+  constructor(call: UpdateBalancesCall) {
     this._call = call;
   }
 
-  get emergencyExit_(): boolean {
-    return this._call.inputValues[0].value.toBoolean();
-  }
-}
-
-export class SetEmergencyExitCall__Outputs {
-  _call: SetEmergencyExitCall;
-
-  constructor(call: SetEmergencyExitCall) {
-    this._call = call;
-  }
-}
-
-export class SetFeeReceiverCall extends ethereum.Call {
-  get inputs(): SetFeeReceiverCall__Inputs {
-    return new SetFeeReceiverCall__Inputs(this);
-  }
-
-  get outputs(): SetFeeReceiverCall__Outputs {
-    return new SetFeeReceiverCall__Outputs(this);
-  }
-}
-
-export class SetFeeReceiverCall__Inputs {
-  _call: SetFeeReceiverCall;
-
-  constructor(call: SetFeeReceiverCall) {
-    this._call = call;
-  }
-
-  get feeReceiver_(): Address {
+  get from(): Address {
     return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class SetFeeReceiverCall__Outputs {
-  _call: SetFeeReceiverCall;
-
-  constructor(call: SetFeeReceiverCall) {
-    this._call = call;
-  }
-}
-
-export class SetMaxLossRatioCall extends ethereum.Call {
-  get inputs(): SetMaxLossRatioCall__Inputs {
-    return new SetMaxLossRatioCall__Inputs(this);
-  }
-
-  get outputs(): SetMaxLossRatioCall__Outputs {
-    return new SetMaxLossRatioCall__Outputs(this);
-  }
-}
-
-export class SetMaxLossRatioCall__Inputs {
-  _call: SetMaxLossRatioCall;
-
-  constructor(call: SetMaxLossRatioCall) {
-    this._call = call;
-  }
-
-  get maxLossRatio_(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetMaxLossRatioCall__Outputs {
-  _call: SetMaxLossRatioCall;
-
-  constructor(call: SetMaxLossRatioCall) {
-    this._call = call;
-  }
-}
-
-export class SetMinLockPeriodRatioCall extends ethereum.Call {
-  get inputs(): SetMinLockPeriodRatioCall__Inputs {
-    return new SetMinLockPeriodRatioCall__Inputs(this);
-  }
-
-  get outputs(): SetMinLockPeriodRatioCall__Outputs {
-    return new SetMinLockPeriodRatioCall__Outputs(this);
-  }
-}
-
-export class SetMinLockPeriodRatioCall__Inputs {
-  _call: SetMinLockPeriodRatioCall;
-
-  constructor(call: SetMinLockPeriodRatioCall) {
-    this._call = call;
-  }
-
-  get minLockPeriodRatio_(): BigInt {
-    return this._call.inputValues[0].value.toBigInt();
-  }
-}
-
-export class SetMinLockPeriodRatioCall__Outputs {
-  _call: SetMinLockPeriodRatioCall;
-
-  constructor(call: SetMinLockPeriodRatioCall) {
-    this._call = call;
-  }
-}
-
-export class TransferOwnershipCall extends ethereum.Call {
-  get inputs(): TransferOwnershipCall__Inputs {
-    return new TransferOwnershipCall__Inputs(this);
-  }
-
-  get outputs(): TransferOwnershipCall__Outputs {
-    return new TransferOwnershipCall__Outputs(this);
-  }
-}
-
-export class TransferOwnershipCall__Inputs {
-  _call: TransferOwnershipCall;
-
-  constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-
-  get newOwner(): Address {
-    return this._call.inputValues[0].value.toAddress();
-  }
-}
-
-export class TransferOwnershipCall__Outputs {
-  _call: TransferOwnershipCall;
-
-  constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawCall extends ethereum.Call {
-  get inputs(): WithdrawCall__Inputs {
-    return new WithdrawCall__Inputs(this);
-  }
-
-  get outputs(): WithdrawCall__Outputs {
-    return new WithdrawCall__Outputs(this);
-  }
-}
-
-export class WithdrawCall__Inputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawCall__Outputs {
-  _call: WithdrawCall;
-
-  constructor(call: WithdrawCall) {
-    this._call = call;
-  }
-}
-
-export class WithdrawToCall extends ethereum.Call {
-  get inputs(): WithdrawToCall__Inputs {
-    return new WithdrawToCall__Inputs(this);
-  }
-
-  get outputs(): WithdrawToCall__Outputs {
-    return new WithdrawToCall__Outputs(this);
-  }
-}
-
-export class WithdrawToCall__Inputs {
-  _call: WithdrawToCall;
-
-  constructor(call: WithdrawToCall) {
-    this._call = call;
   }
 
   get to(): Address {
-    return this._call.inputValues[0].value.toAddress();
+    return this._call.inputValues[1].value.toAddress();
+  }
+
+  get amount(): BigInt {
+    return this._call.inputValues[2].value.toBigInt();
   }
 }
 
-export class WithdrawToCall__Outputs {
-  _call: WithdrawToCall;
+export class UpdateBalancesCall__Outputs {
+  _call: UpdateBalancesCall;
 
-  constructor(call: WithdrawToCall) {
+  constructor(call: UpdateBalancesCall) {
     this._call = call;
   }
 }
