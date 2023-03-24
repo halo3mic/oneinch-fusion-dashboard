@@ -11,6 +11,65 @@ import {
   BigDecimal
 } from "@graphprotocol/graph-ts";
 
+export class PodFarm extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save PodFarm entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type PodFarm must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("PodFarm", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): PodFarm | null {
+    return changetype<PodFarm | null>(store.get("PodFarm", id.toHexString()));
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get giftToken(): Bytes {
+    let value = this.get("giftToken");
+    return value!.toBytes();
+  }
+
+  set giftToken(value: Bytes) {
+    this.set("giftToken", Value.fromBytes(value));
+  }
+
+  get power(): BigInt {
+    let value = this.get("power");
+    return value!.toBigInt();
+  }
+
+  set power(value: BigInt) {
+    this.set("power", Value.fromBigInt(value));
+  }
+
+  get rewards(): BigInt {
+    let value = this.get("rewards");
+    return value!.toBigInt();
+  }
+
+  set rewards(value: BigInt) {
+    this.set("rewards", Value.fromBigInt(value));
+  }
+}
+
 export class EmergencyExitSet extends Entity {
   constructor(id: Bytes) {
     super();
@@ -2402,13 +2461,21 @@ export class Transaction extends Entity {
     this.set("gasPrice", Value.fromBigInt(value));
   }
 
-  get gasUsed(): BigInt {
+  get gasUsed(): BigInt | null {
     let value = this.get("gasUsed");
-    return value!.toBigInt();
+    if (!value || value.kind == ValueKind.NULL) {
+      return null;
+    } else {
+      return value.toBigInt();
+    }
   }
 
-  set gasUsed(value: BigInt) {
-    this.set("gasUsed", Value.fromBigInt(value));
+  set gasUsed(value: BigInt | null) {
+    if (!value) {
+      this.unset("gasUsed");
+    } else {
+      this.set("gasUsed", Value.fromBigInt(<BigInt>value));
+    }
   }
 }
 
@@ -2443,6 +2510,15 @@ export class Settlement extends Entity {
 
   set id(value: Bytes) {
     this.set("id", Value.fromBytes(value));
+  }
+
+  get orderHash(): Bytes {
+    let value = this.get("orderHash");
+    return value!.toBytes();
+  }
+
+  set orderHash(value: Bytes) {
+    this.set("orderHash", Value.fromBytes(value));
   }
 
   get transaction(): Bytes {
@@ -2481,56 +2557,153 @@ export class Settlement extends Entity {
     this.set("takerAsset", Value.fromBytes(value));
   }
 
-  get makingAmountOrder(): BigInt {
-    let value = this.get("makingAmountOrder");
+  get offeredMakingAmount(): BigInt {
+    let value = this.get("offeredMakingAmount");
     return value!.toBigInt();
   }
 
-  set makingAmountOrder(value: BigInt) {
-    this.set("makingAmountOrder", Value.fromBigInt(value));
+  set offeredMakingAmount(value: BigInt) {
+    this.set("offeredMakingAmount", Value.fromBigInt(value));
   }
 
-  get takingAmountOrder(): BigInt {
-    let value = this.get("takingAmountOrder");
+  get offeredTakingAmoun(): BigInt {
+    let value = this.get("offeredTakingAmoun");
     return value!.toBigInt();
   }
 
-  set takingAmountOrder(value: BigInt) {
-    this.set("takingAmountOrder", Value.fromBigInt(value));
+  set offeredTakingAmoun(value: BigInt) {
+    this.set("offeredTakingAmoun", Value.fromBigInt(value));
   }
 
-  get makingAmountExected(): BigInt {
-    let value = this.get("makingAmountExected");
+  get actualMakingAmount(): BigInt {
+    let value = this.get("actualMakingAmount");
     return value!.toBigInt();
   }
 
-  set makingAmountExected(value: BigInt) {
-    this.set("makingAmountExected", Value.fromBigInt(value));
+  set actualMakingAmount(value: BigInt) {
+    this.set("actualMakingAmount", Value.fromBigInt(value));
   }
 
-  get takingAmountExecuted(): BigInt {
-    let value = this.get("takingAmountExecuted");
-    return value!.toBigInt();
-  }
-
-  set takingAmountExecuted(value: BigInt) {
-    this.set("takingAmountExecuted", Value.fromBigInt(value));
-  }
-
-  get receiver(): string | null {
-    let value = this.get("receiver");
+  get actualTakingAmount(): BigInt | null {
+    let value = this.get("actualTakingAmount");
     if (!value || value.kind == ValueKind.NULL) {
       return null;
     } else {
-      return value.toString();
+      return value.toBigInt();
     }
   }
 
-  set receiver(value: string | null) {
+  set actualTakingAmount(value: BigInt | null) {
     if (!value) {
-      this.unset("receiver");
+      this.unset("actualTakingAmount");
     } else {
-      this.set("receiver", Value.fromString(<string>value));
+      this.set("actualTakingAmount", Value.fromBigInt(<BigInt>value));
     }
+  }
+
+  get receiver(): Bytes {
+    let value = this.get("receiver");
+    return value!.toBytes();
+  }
+
+  set receiver(value: Bytes) {
+    this.set("receiver", Value.fromBytes(value));
+  }
+
+  get maker(): Bytes {
+    let value = this.get("maker");
+    return value!.toBytes();
+  }
+
+  set maker(value: Bytes) {
+    this.set("maker", Value.fromBytes(value));
+  }
+
+  get executor(): Bytes {
+    let value = this.get("executor");
+    return value!.toBytes();
+  }
+
+  set executor(value: Bytes) {
+    this.set("executor", Value.fromBytes(value));
+  }
+
+  get isPrivate(): boolean {
+    let value = this.get("isPrivate");
+    return value!.toBoolean();
+  }
+
+  set isPrivate(value: boolean) {
+    this.set("isPrivate", Value.fromBoolean(value));
+  }
+
+  get interactiveFee(): BigInt {
+    let value = this.get("interactiveFee");
+    return value!.toBigInt();
+  }
+
+  set interactiveFee(value: BigInt) {
+    this.set("interactiveFee", Value.fromBigInt(value));
+  }
+}
+
+export class ResolverTokenVolume extends Entity {
+  constructor(id: Bytes) {
+    super();
+    this.set("id", Value.fromBytes(id));
+  }
+
+  save(): void {
+    let id = this.get("id");
+    assert(id != null, "Cannot save ResolverTokenVolume entity without an ID");
+    if (id) {
+      assert(
+        id.kind == ValueKind.BYTES,
+        `Entities of type ResolverTokenVolume must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+      );
+      store.set("ResolverTokenVolume", id.toBytes().toHexString(), this);
+    }
+  }
+
+  static load(id: Bytes): ResolverTokenVolume | null {
+    return changetype<ResolverTokenVolume | null>(
+      store.get("ResolverTokenVolume", id.toHexString())
+    );
+  }
+
+  get id(): Bytes {
+    let value = this.get("id");
+    return value!.toBytes();
+  }
+
+  set id(value: Bytes) {
+    this.set("id", Value.fromBytes(value));
+  }
+
+  get resolver(): Bytes {
+    let value = this.get("resolver");
+    return value!.toBytes();
+  }
+
+  set resolver(value: Bytes) {
+    this.set("resolver", Value.fromBytes(value));
+  }
+
+  get volume(): BigInt {
+    let value = this.get("volume");
+    return value!.toBigInt();
+  }
+
+  set volume(value: BigInt) {
+    this.set("volume", Value.fromBigInt(value));
+  }
+
+  get asset(): Bytes {
+    let value = this.get("asset");
+    return value!.toBytes();
+  }
+
+  set asset(value: Bytes) {
+    this.set("asset", Value.fromBytes(value));
   }
 }

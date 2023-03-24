@@ -222,34 +222,16 @@ type OrderFilled @entity(immutable: true) {
 	transactionHash: Bytes!
 }
 
-type OrderFilledRFQ @entity(immutable: true) {
-	id: Bytes!
-	orderHash: Bytes! # bytes32
-	makingAmount: BigInt! # uint256
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type AggregationRouterV5OwnershipTransferred @entity(immutable: true) {
-	id: Bytes!
-	previousOwner: Bytes! # address
-	newOwner: Bytes! # address
-	blockNumber: BigInt!
-	blockTimestamp: BigInt!
-	transactionHash: Bytes!
-}
-
-type DelegationInfo @entity(immutable: false) {
-	id: Bytes!
-	holder: Bytes!
-	amount: BigInt!
-}
-
 type Resolver @entity(immutable: false) {
 	id: Bytes!
 	resolvedCount: BigInt!
-	defaultFarm: Bytes!
+}
+
+type ResolverVolPerToken @entity(immutable: false) {
+	id: String!
+	resolver: Resolver!
+	token: Token!
+	volume: BigInt!
 }
 
 type Token @entity(immutable: false) {
@@ -258,23 +240,34 @@ type Token @entity(immutable: false) {
 	decimals: BigInt!
 }
 
-type Transaction @entity(immutable: true) {
+type Transaction @entity(immutable: false) {
 	id: Bytes!
 	block: BigInt!
 	timestamp: BigInt!
 	gasPrice: BigInt!
-	gasUsed: BigInt!
+	gasUsed: BigInt
 }
 
 type Settlement @entity(immutable: true) {
 	id: Bytes!
-	transaction: Transaction!
 	resolver: Resolver!
-	makerAsset: Token!
-	takerAsset: Token!
-	makingAmountOrder: BigInt!
-	takingAmountOrder: BigInt!
-	makingAmountExected: BigInt!
-	takingAmountExecuted: BigInt!
-	receiver: String
+	orderHash: Bytes
+	transaction: Transaction
+	makerAsset: Token
+	takerAsset: Token
+	offeredMakingAmount: BigInt
+	offeredTakingAmoun: BigInt
+	actualMakingAmount: BigInt
+	actualTakingAmount: BigInt
+	receiver: Bytes
+	maker: Bytes
+	executor: Bytes
+	isPrivate: Boolean
+}
+
+type ResolverTokenVolume @entity(immutable: true) {
+	id: Bytes!
+	resolver: Resolver!
+	volume: BigInt!
+	asset: Token!
 }
